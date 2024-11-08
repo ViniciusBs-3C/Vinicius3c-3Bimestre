@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aventura Interativa</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            text-align: center;
+            padding: 20px;
+        }
+        #content {
+            margin: 20px auto;
+            width: 80%;
+            max-width: 600px;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            background-color: #fff;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            margin: 10px;
+            cursor: pointer;
+            border: none;
+            border-radius: 5px;
+            background-color: #007bff;
+            color: #fff;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+
+<div id="content">
+    <h1>Bem-vindo à Aventura!</h1>
+    <p>Você está em uma floresta escura. Há dois caminhos à sua frente.</p>
+    <button onclick="choosePath('esquerda')">Seguir para a esquerda</button>
+    <button onclick="choosePath('direita')">Seguir para a direita</button>
+</div>
+
+<script>
+    function choosePath(choice) {
+        let content = document.getElementById('content');
+
+        if (choice === 'esquerda') {
+            content.innerHTML = `
+                <h1>Você escolheu a esquerda!</h1>
+                <p>Você encontra uma cabana abandonada. Você deseja entrar?</p>
+                <button onclick="choosePath('entrar')">Entrar</button>
+                <button onclick="choosePath('voltar')">Voltar</button>
+            `;
+        } else if (choice === 'direita') {
+            content.innerHTML = `
+                <h1>Você escolheu a direita!</h1>
+                <p>Você encontra um lago sereno. Você deseja nadar ou seguir em frente?</p>
+                <button onclick="choosePath('nadar')">Nadar</button>
+                <button onclick="choosePath('seguir')">Seguir em frente</button>
+            `;
+        } else if (choice === 'entrar') {
+            content.innerHTML = `
+                <h1>Você entrou na cabana...</h1>
+                <p>Dentro da cabana, você encontra um baú. Parabéns, você encontrou o tesouro!</p>
+                <button onclick="resetGame()">Recomeçar</button>
+            `;
+        } else if (choice === 'voltar') {
+            content.innerHTML = `
+                <h1>Você voltou ao início.</h1>
+                <p>Você está na encruzilhada novamente.</p>
+                <button onclick="choosePath('esquerda')">Seguir para a esquerda</button>
+                <button onclick="choosePath('direita')">Seguir para a direita</button>
+            `;
+        } else if (choice === 'nadar') {
+            content.innerHTML = `
+                <h1>Você decidiu nadar no lago...</h1>
+                <p>Infelizmente, você foi capturado por uma criatura aquática misteriosa. Fim de jogo.</p>
+                <button onclick="resetGame()">Recomeçar</button>
+            `;
+        } else if (choice === 'seguir') {
+            content.innerHTML = `
+                <h1>Você continuou sua jornada...</h1>
+                <p>Após uma longa caminhada, você encontra uma vila pacífica e é bem-vindo pelos moradores. Parabéns, você encontrou um final feliz!</p>
+                <button onclick="resetGame()">Recomeçar</button>
+            `;
+        }
+    }
+
+    function resetGame() {
+        document.getElementById('content').innerHTML = `
+            <h1>Bem-vindo à Aventura!</h1>
+            <p>Você está em uma floresta escura. Há dois caminhos à sua frente.</p>
+            <button onclick="choosePath('esquerda')">Seguir para a esquerda</button>
+            <button onclick="choosePath('direita')">Seguir para a direita</button>
+        `;
+    }
+</script>
+
+</body>
+</html>
